@@ -1,7 +1,14 @@
+/**
+ * The BitList class.
+ * @since 1.0.0
+ * @author Mikhail Kormanowsky
+ */
 class BitList {
     /**
-     * Constrctor.
+     * Constructor.
      * @param {Array|Number} initialValue Initial value may be a number, an array or an object.
+     * @since 1.0.0
+     * @author Mikhail Kormanowsky
      */
     constructor(initialValue) {
         // Init raw list here. Our "raw list" is just a number.
@@ -122,6 +129,11 @@ class BitList {
         }
         return array;
     }
+}
+
+// Browser support
+if (typeof window === "object") {
+    window.BitList = BitList;
 }
 
 module.exports = BitList;

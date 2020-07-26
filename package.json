@@ -1,0 +1,24 @@
+{
+  "name": "js-bit-list",
+  "version": "1.0.0",
+  "description": "Store arrays of boolean values in numbers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kormanowsky/js-bit-list.git"
+  },
+  "keywords": [
+    "boolean",
+    "bit-list",
+    "boolean-array"
+  ],
+  "author": "Mikhail Kormanowsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kormanowsky/js-bit-list/issues"
+  },
+  "homepage": "https://github.com/kormanowsky/js-bit-list#readme"
+}

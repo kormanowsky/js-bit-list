@@ -6,7 +6,7 @@
 class BitList {
     /**
      * Constructor.
-     * @param {Array|Number} initialValue Initial value may be a number, an array or an object.
+     * @param {Array|Number|Object|undefined} initialValue Initial value may be a number, an array or an object.
      * @since 1.0.0
      * @author Mikhail Kormanowsky
      */
@@ -35,14 +35,14 @@ class BitList {
     /**
      * Returns a single bit.
      * @param {Number} bit Index of the bit.
-     * @returns {Boolean} The value of the requested bit.
+     * @returns {Number} The value of the requested bit.
      * @since 1.0.0
      * @author Mikhail Kormanowsky
      */
     getBit(bit) {
         if (!(typeof bit === "number" && bit >= 0)) {
             throw new TypeError(
-                `Unexpexted bit type. Expected a non-negative number, but got ${bit}`
+                `Unexpected bit type. Expected a non-negative number, but got ${bit}`
             );
         }
         // We take the remainder to strip everything except the part which starts with requested bit.
@@ -63,13 +63,13 @@ class BitList {
     setBit(bit, value) {
         if (!(typeof bit === "number" && bit >= 0)) {
             throw new TypeError(
-                `Unexpexted bit type. Expected a non-negative number, but got ${bit}`
+                `Unexpected bit type. Expected a non-negative number, but got ${bit}`
             );
         }
         // Check if old and new value are different
         if (value ^ this.getBit(bit)) {
             // To set bit to true means here to add pow(2, bit) to the raw list (to set bit number bit to 1).
-            // To set it to false means to subtarct pow(2, bit) from the raw list.
+            // To set it to false means to subtract pow(2, bit) from the raw list.
             if (value) {
                 this.rawList += 2 ** bit;
             } else {
@@ -91,13 +91,20 @@ class BitList {
 
     /**
      * Copies values from given object to the bit list.
-     * @param {Object} array Object to copy from.
+     * @param {Object} object Object to copy from.
+     * @param {Array} keys An array containing all possible object keys in standard order.
      * @see BitList#setArray
-     * @since 1.0.0
+     * @since 1.0.2
      * @author Mikhail Kormanowsky
      */
-    setObject(object) {
-        this.setArray(Object.values(object));
+    setObject(object, keys) {
+        Object.keys(object).forEach((key) => {
+            let keyIndex = keys.indexOf(key);
+            if (keyIndex === -1) {
+                return;
+            }
+            this.setBit(keyIndex, object[key]);
+        });
     }
 
     /**
@@ -115,7 +122,6 @@ class BitList {
      * @returns {Array} Array with bits.
      * @since 1.0.0
      * @author Mikhail Kormanowsky
-     *
      */
     toArray() {
         let array = [],
@@ -128,6 +134,24 @@ class BitList {
             return [0];
         }
         return array;
+    }
+
+    /**
+     * Converts this bit list to Object.
+     * @param {Array} keys An array containing all possible object keys in standard order.
+     * @since 1.0.2
+     * @author Mikhail Kormanowsky
+     */
+    toObject(keys) {
+        let array = this.toArray(),
+            result = {};
+        keys.forEach((key) => {
+            result[key] = 0;
+        });
+        array.forEach((bit, index) => {
+            result[keys[index]] = bit;
+        });
+        return result;
     }
 }
 

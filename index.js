@@ -6,7 +6,7 @@
 class BitList {
     /**
      * Constructor.
-     * @param {Array|Number|Object|undefined} initialValue Initial value may be a number, an array or an object.
+     * @param {Array|Number|undefined} initialValue Initial value may be a number or an array.
      * @since 1.0.0
      * @author Mikhail Kormanowsky
      */
@@ -18,11 +18,6 @@ class BitList {
         this.rawList = 0;
         if (initialValue instanceof Array) {
             this.setArray(initialValue);
-        } else if (
-            typeof initialValue === "object" &&
-            !(initialValue === null)
-        ) {
-            this.setObject(initialValue);
         } else if (typeof initialValue === "number") {
             this.rawList = initialValue;
         } else if (!(typeof initialValue === "undefined")) {
@@ -76,6 +71,16 @@ class BitList {
                 this.rawList -= 2 ** bit;
             }
         }
+    }
+
+    /**
+     * Copies given number to the bit list.
+     * @param {Number} array Number to copy from.
+     * @since 1.1.0
+     * @author Mikhail Kormanowsky
+     */
+    setNumber(number){
+        this.rawList = number;
     }
 
     /**
@@ -149,7 +154,9 @@ class BitList {
             result[key] = 0;
         });
         array.forEach((bit, index) => {
-            result[keys[index]] = bit;
+            if(index < keys.length){
+                result[keys[index]] = bit;
+            }
         });
         return result;
     }

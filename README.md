@@ -18,3 +18,26 @@ let arr = list.toArray(); // Gives [0, 0, 0, 1, 1]
 let predefinedList = new BitList([0, 0, 0, 1, 1, 0, 0])
 let predefinedListFromNumber = new BitList(31);
 ```
+## Working with objects 
+Bit list may work with objects so it is convenient to use it when you need to configure something. Imagine you have a list of cities and want to configure, which of them are available for delivery. 
+```javascript
+// Create a list of keys (your cities here)
+const Cities = ["Moscow", "London", "Paris", "Prague"];
+// Tip: extend BitList to use your own keys
+class CitiesBitList extends BitList {
+    setObject(object) {
+        return super.setObject(object, Cities);
+    }
+
+    toObject() {
+        return super.toObject(Cities);
+    }
+}
+// Then use your class for configuration
+let citiesOfRussia = new CitiesBitList().setObject({Moscow: true});
+// Convert to number 
+let citiesNumber = citiesOfRussia.toNumber(); 
+// ...
+// Later, convert it back to object 
+let citiesFromNumber = new CitiesBitList(citiesNumber).toObject();
+```

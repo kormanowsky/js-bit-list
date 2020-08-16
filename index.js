@@ -195,6 +195,7 @@ class BitList {
           super(initialValue);
         } catch (error) {
           if (typeof initialValue === "object" && initialValue !== null) {
+            super(0);
             this.setObject(initialValue);
           } else {
             throw error;

@@ -48,3 +48,4 @@ let citiesNumber = citiesOfRussia.toNumber();
 // Later, convert it back to object 
 let citiesFromNumber = new CitiesBitList(citiesNumber).toObject();
 ```
+### See example.js for working example

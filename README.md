@@ -24,6 +24,10 @@ Bit list may work with objects so it is convenient to use it when you need to co
 // Create a list of keys (your cities here)
 const Cities = ["Moscow", "London", "Paris", "Prague"];
 // Tip: extend BitList to use your own keys
+const CitiesBitList = BitList.useKeys(Cities);
+/** 
+ * v1.1.0- (not recommended)
+ */
 class CitiesBitList extends BitList {
     setObject(object) {
         return super.setObject(object, Cities);
@@ -33,6 +37,9 @@ class CitiesBitList extends BitList {
         return super.toObject(Cities);
     }
 }
+/** 
+ * END v1.1.0-
+ */
 // Then use your class for configuration
 let citiesOfRussia = new CitiesBitList().setObject({Moscow: true});
 // Convert to number 

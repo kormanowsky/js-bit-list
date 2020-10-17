@@ -1,6 +1,6 @@
 {
   "name": "js-bit-list",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Store arrays of boolean values in numbers.",
   "main": "index.js",
   "scripts": {

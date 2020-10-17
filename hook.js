@@ -11,7 +11,7 @@ import { useState } from "react";
  */
 function useBitList(initialInstance) {
   const [rawList, setRawList] = useState(initialInstance.rawList),
-    instance = new instance.constructor(rawList);
+    instance = new initialInstance.constructor(rawList);
   return [
     instance,
     (newInstance) => {

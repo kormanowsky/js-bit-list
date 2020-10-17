@@ -1,5 +1,3 @@
-import { useBitList } from "./hook";
-
 /**
  * The BitList class.
  * @since 1.0.0
@@ -232,5 +230,4 @@ if (typeof window === "object") {
   window.BitList = BitList;
 }
 
-export { useBitList };
 export default BitList;

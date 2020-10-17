@@ -61,6 +61,7 @@ The new `useBitList()` hook may be used in React applications.
 
 ```javascript
 import BitList from "js-bit-list";
+import { useBitList } from "js-bit-list/hook";
 const MyBitList = BitList.useKeys(["myKey"]);
 const [list, setList] = useBitList(MyBitList, { myKey: 1 });
 // Later

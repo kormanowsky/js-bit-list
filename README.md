@@ -54,11 +54,11 @@ The new `useBitList()` hook may be used in React applications.
 ```javascript 
 import BitList from "js-bit-list";
 const MyBitList = BitList.useKeys(["myKey"]);
-const [getList, withList] = useBitList(MyBitList, {myKey: 1});
+const [getList, setList] = useBitList(MyBitList, {myKey: 1});
 // Later 
-const listNumber = getList().toNumber(); 
-withList(list => {
-    list.setObject({myKey: 0})
-});
+const listNumber = getList().toNumber(), 
+    list = getList();
+list.setObject({myKey: 0});
+setList(list);
 ```
 ### See example.js for working example

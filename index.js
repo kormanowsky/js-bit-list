@@ -1,3 +1,5 @@
+import { useBitList } from "./hook";
+
 /**
  * The BitList class.
  * @since 1.0.0
@@ -228,20 +230,6 @@ class BitList {
 // Browser support
 if (typeof window === "object") {
   window.BitList = BitList;
-}
-
-// ReactJS support
-
-/**
- * A React hook for bit list.
- * @param {*} bitListClass A bit list class (child of BitList) to use
- * @param {*} initialValue An initial value to use.
- * @since 1.3.0
- * @example const [getBitList, setBitList] = useBitList(MyBitList, {"mykey":true})
- */
-function useBitList(bitListClass, initialValue) {
-  let instance = new bitListClass(initialValue);
-  return [() => instance, (newInstance) => (instance = newInstance)];
 }
 
 export { useBitList };

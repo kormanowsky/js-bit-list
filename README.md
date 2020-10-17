@@ -48,4 +48,17 @@ let citiesNumber = citiesOfRussia.toNumber();
 // Later, convert it back to object 
 let citiesFromNumber = new CitiesBitList(citiesNumber).toObject();
 ```
+
+## New in v1.3.0: React support 
+The new `useBitList()` hook may be used in React applications. 
+```javascript 
+import BitList from "js-bit-list";
+const MyBitList = BitList.useKeys(["myKey"]);
+const [getList, withList] = useBitList(MyBitList, {myKey: 1});
+// Later 
+const listNumber = getList().toNumber(); 
+withList(list => {
+    list.setObject({myKey: 0})
+});
+```
 ### See example.js for working example

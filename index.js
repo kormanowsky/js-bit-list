@@ -230,4 +230,4 @@ if (typeof window === "object") {
   window.BitList = BitList;
 }
 
-export default BitList;
+module.exports = BitList;

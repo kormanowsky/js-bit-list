@@ -1,4 +1,4 @@
-import { useState } from "react";
+const { useState } = require("react");
 
 // ReactJS support
 
@@ -20,4 +20,6 @@ function useBitList(initialInstance) {
   ];
 }
 
-export { useBitList };
+module.exports = {
+  useBitList
+}

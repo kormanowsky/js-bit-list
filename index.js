@@ -183,6 +183,15 @@ class BitList {
      * @author Mikhail Kormanowsky
      */
     return class extends this {
+      /**
+       * Checks whether given key is correct for this class,
+       * if so, returns its index, otherwise throws an error.
+       * @param {*} key
+       * @returns {Number} Key's index.
+       * @throws Error if there is no such key.
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
       static checkKey(key) {
         const keyIndex = keys.indexOf(key);
         if (keyIndex === -1) {
@@ -247,10 +256,10 @@ class BitList {
 
       /**
        * Sets the value of given key.
-       * @param {*} key The key. 
-       * @param {*} value The value. 
+       * @param {*} key The key.
+       * @param {*} value The value.
        * @see BitList#setBit
-       * @see #checkKey 
+       * @see #checkKey
        * @since 2.2.0
        * @author Mikhail Kormanowsky
        */
@@ -281,7 +290,7 @@ class BitList {
       }
 
       /**
-       * Returns an array of all keys 
+       * Returns an array of all keys
        * @returns {Array}
        * @since 2.2.0
        * @author Mikhail Kormanowsky

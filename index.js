@@ -183,6 +183,16 @@ class BitList {
      * @author Mikhail Kormanowsky
      */
     return class extends this {
+      static checkKey(key) {
+        const keyIndex = keys.indexOf(key);
+        if (keyIndex === -1) {
+          throw new Error(
+            `Unknown key: ${key}. Available keys are ${JSON.stringify(keys)}`
+          );
+        }
+        return keyIndex;
+      }
+
       /**
        * It is the same as parent class' constructor but it supports Objects as initial value.
        * @param {Array|Number|Object} initialValue The initial value.
@@ -220,6 +230,64 @@ class BitList {
        */
       toObject() {
         return super.toObject(keys);
+      }
+
+      /**
+       * Returns the value (0/1) of given key
+       * @param {*} key The key.
+       * @returns {Number} Returns the value (0/1) of given key
+       * @see BitList#getBit
+       * @see #checkKey
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
+      get(key) {
+        return this.getBit(this.constructor.checkKey(key));
+      }
+
+      /**
+       * Sets the value of given key.
+       * @param {*} key The key. 
+       * @param {*} value The value. 
+       * @see BitList#setBit
+       * @see #checkKey 
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
+      set(key, value) {
+        this.setBit(this.constructor.checkKey(key), value);
+      }
+
+      /**
+       * Returns an array of enabled keys (keys which bits are set to 1)
+       * @returns {Array} An array of keys as they were given to .useKeys()
+       * @see #get
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
+      enabledKeys() {
+        return keys.filter((key) => this.get(key));
+      }
+
+      /**
+       * Returns an array of disabled keys (keys which bits are set to 0)
+       * @returns {Array} An array of keys as they were given to .useKeys()
+       * @see #get
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
+      disabledKeys() {
+        return keys.filter((key) => !this.get(key));
+      }
+
+      /**
+       * Returns an array of all keys 
+       * @returns {Array}
+       * @since 2.2.0
+       * @author Mikhail Kormanowsky
+       */
+      keys() {
+        return keys;
       }
     };
   }

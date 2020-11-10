@@ -70,4 +70,22 @@ list.setObject({ myKey: 0 });
 setList(list);
 ```
 
+## New in v2.2.0: .get(), .set(), .keys(), .enabledkeys(), .disabledKeys() and static .checkKey() methods in customized class: 
+```javascript
+const BitList = require("js-bit-list"); 
+const FruitsBitList = BitList.useKeys(["apple", "banana", "orange"])
+// .checkKey() 
+FruitsBitList.checkKey("apple") // -> 0 
+FruitsBitList.checkKey("tomato") // -> Error 
+// .get() and .set()
+const fruitsList = new FruitsBitList();
+fruitsList.get("apple") // -> 0
+fruitsList.set("orange", 1); 
+fruitsList.get("orange") // -> 1
+// .enabledKeys(), .disabledKeys(), .keys()
+fruitsList.enabledKeys() // -> ["orange"]
+fruitsList.disabledKeys() // -> ["apple", "banana"]
+fruitsList.keys() // -> ["apple", "banana", "orange"]
+```
+
 ### See example.js for working example
